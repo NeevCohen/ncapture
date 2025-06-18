@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.0.3)
-project(ncapture)
+project(ncapture LANGUAGES CXX)
 
 add_subdirectory(cli)
 add_subdirectory(lib)

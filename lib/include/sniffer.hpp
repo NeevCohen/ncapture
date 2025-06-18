@@ -7,13 +7,13 @@
 
 namespace lib
 {
-    class Sniffer : noncopyable
+    class Sniffer : public noncopyable
     {
     private:
         static lib::File get_available_bpf_device();
 
     public:
-        Sniffer(const std::string &interface_name);
+        explicit Sniffer(const std::string &interface_name);
         Sniffer(Sniffer &&other) = delete;
 
     public:

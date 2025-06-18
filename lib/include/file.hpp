@@ -13,7 +13,7 @@ namespace lib
         int open(const std::string &path, int flags);
 
     public:
-        File(const std::string &path, int flags);
+        explicit File(const std::string &path, int flags);
         File(File &&other);
         ~File();
 

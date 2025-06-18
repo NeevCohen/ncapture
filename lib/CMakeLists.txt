@@ -1,4 +1,4 @@
-add_library(lib
+add_library(snifferLib
             src/sniffer.cpp
             src/file.cpp)
-target_include_directories(lib PUBLIC include)
+target_include_directories(snifferLib PUBLIC include)
