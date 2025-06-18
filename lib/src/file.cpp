@@ -8,7 +8,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int lib::File::open(const std::string &path, int flags)
+int File::open(const std::string &path, int flags)
 {
     int fd = ::open(path.c_str(), flags);
     if (fd < 0)
@@ -19,17 +19,17 @@ int lib::File::open(const std::string &path, int flags)
     return fd;
 }
 
-lib::File::File(const std::string &path, int flags) : path(path),
-                                                      _fd(open(path, flags))
+File::File(const std::string &path, int flags) : path(path),
+                                                 _fd(open(path, flags))
 {
 }
 
-lib::File::File(File &&other)
+File::File(File &&other)
 {
     std::swap(other._fd, _fd);
 }
 
-lib::File::~File()
+File::~File()
 {
     try
     {
@@ -44,7 +44,7 @@ lib::File::~File()
     }
 }
 
-void lib::File::ioctl(unsigned long request, void *parameter)
+void File::ioctl(unsigned long request, void *parameter)
 {
     if (::ioctl(_fd, request, parameter) == -1)
     {
@@ -52,7 +52,7 @@ void lib::File::ioctl(unsigned long request, void *parameter)
     }
 }
 
-lib::Buffer lib::File::read(size_t length)
+Buffer File::read(size_t length)
 {
     Buffer buffer(length);
     const ssize_t bytes_read = ::read(_fd, buffer.data(), buffer.size());

@@ -1,4 +1,5 @@
 #include "sniffer.hpp"
+#include "sniffer.hpp"
 #include "string_utils.hpp"
 
 #include <iostream>
@@ -9,7 +10,7 @@
 #include <sys/ioctl.h>
 #include <net/bpf.h>
 
-lib::File lib::Sniffer::get_available_bpf_device()
+File Sniffer::get_available_bpf_device()
 {
     static constexpr size_t MAX_BPF_DEVICES = 99;
     static constexpr char BPF_DEVICE_FORMAT[] = "/dev/bpf%u";
@@ -18,8 +19,8 @@ lib::File lib::Sniffer::get_available_bpf_device()
     {
         try
         {
-            const std::string bpf_dev_path = lib::string_format(BPF_DEVICE_FORMAT, i);
-            return lib::File{bpf_dev_path, O_RDONLY};
+            const std::string bpf_dev_path = string_format(BPF_DEVICE_FORMAT, i);
+            return File{bpf_dev_path, O_RDONLY};
         }
         catch (const std::runtime_error &)
         {
@@ -29,16 +30,16 @@ lib::File lib::Sniffer::get_available_bpf_device()
     throw std::runtime_error("Failed to find available bpf device");
 }
 
-lib::Sniffer::Sniffer(const std::string &interface_name) : _interface_name(interface_name),
-                                                           _bpf_device(get_available_bpf_device()),
-                                                           _read_buffer_size(0),
-                                                           _read_buffer({}),
-                                                           _current_bpf_capture(_read_buffer.cend())
+Sniffer::Sniffer(const std::string &interface_name) : _interface_name(interface_name),
+                                                      _bpf_device(get_available_bpf_device()),
+                                                      _read_buffer_size(0),
+                                                      _read_buffer({}),
+                                                      _current_bpf_capture(_read_buffer.cend())
 {
     init_bpf_device();
 }
 
-lib::Buffer lib::Sniffer::read_next_capture()
+Buffer Sniffer::read_next_capture()
 {
     if (_current_bpf_capture >= _read_buffer.cend())
     {
@@ -61,7 +62,12 @@ lib::Buffer lib::Sniffer::read_next_capture()
     return capture_data;
 }
 
-void lib::Sniffer::init_bpf_device()
+std::string Sniffer::get_interface_name() const
+{
+    return _interface_name;
+}
+
+void Sniffer::init_bpf_device()
 {
     _bpf_device.ioctl(BIOCGBLEN, &_read_buffer_size);
     _bpf_device.ioctl(BIOCSBLEN, &_read_buffer_size);

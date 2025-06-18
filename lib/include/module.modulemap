@@ -1,0 +1,6 @@
+module snifferLib {
+    header "sniffer.hpp"
+    link "snifferLib"
+
+    export *
+}
