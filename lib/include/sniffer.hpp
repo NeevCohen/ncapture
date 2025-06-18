@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include "net/bpf.h"
-
 namespace lib
 {
     class Sniffer : noncopyable
@@ -22,8 +20,7 @@ namespace lib
         Buffer read_next_capture();
 
     private:
-        void
-        init_bpf_device();
+        void init_bpf_device();
 
     private:
         const std::string _interface_name;

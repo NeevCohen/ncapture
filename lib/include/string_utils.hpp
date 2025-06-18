@@ -1,4 +1,4 @@
-#pragma oncde
+#pragma once
 
 #include <memory>
 #include <string>
