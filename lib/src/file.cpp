@@ -55,10 +55,12 @@ void lib::File::ioctl(unsigned long request, void *parameter)
 lib::Buffer lib::File::read(size_t length)
 {
     Buffer buffer(length);
-    if (::read(_fd, buffer.data(), buffer.size()) == -1)
+    const ssize_t bytes_read = ::read(_fd, buffer.data(), buffer.size());
+    if (bytes_read == -1)
     {
         throw std::runtime_error(string_format("Failed to read from file %s (errno %d)", path.c_str(), errno));
     }
 
+    buffer.resize(bytes_read);
     return buffer;
 }

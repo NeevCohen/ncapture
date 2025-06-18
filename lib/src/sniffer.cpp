@@ -32,21 +32,23 @@ lib::File lib::Sniffer::get_available_bpf_device()
 lib::Sniffer::Sniffer(const std::string &interface_name) : _interface_name(interface_name),
                                                            _bpf_device(get_available_bpf_device()),
                                                            _read_buffer_size(0),
-                                                           _read_buffer({})
+                                                           _read_buffer({}),
+                                                           _current_bpf_capture(_read_buffer.cend())
 {
     init_bpf_device();
 }
 
 lib::Buffer lib::Sniffer::read_next_capture()
 {
-    if (_read_buffer.empty())
+    if (_current_bpf_capture >= _read_buffer.cend())
     {
         _read_buffer = _bpf_device.read(_read_buffer_size);
+        _current_bpf_capture = _read_buffer.cbegin();
     }
 
-    const bpf_hdr *bpf_header = reinterpret_cast<const bpf_hdr *>(_read_buffer.data());
-    const Buffer::const_iterator capture_data_start = _read_buffer.cbegin() + bpf_header->bh_hdrlen;
-    const Buffer::const_iterator capture_data_end = _read_buffer.cbegin() + bpf_header->bh_hdrlen + bpf_header->bh_caplen;
+    const bpf_hdr *bpf_header = reinterpret_cast<const bpf_hdr *>(&(*_current_bpf_capture));
+    const Buffer::const_iterator capture_data_start = _current_bpf_capture + bpf_header->bh_hdrlen;
+    const Buffer::const_iterator capture_data_end = _current_bpf_capture + bpf_header->bh_hdrlen + bpf_header->bh_datalen;
 
     if (capture_data_start >= _read_buffer.cend())
     {
@@ -55,8 +57,7 @@ lib::Buffer lib::Sniffer::read_next_capture()
 
     const Buffer capture_data(capture_data_start, capture_data_end);
 
-    _read_buffer.erase(_read_buffer.cbegin(), _read_buffer.cbegin() + BPF_WORDALIGN(bpf_header->bh_hdrlen + bpf_header->bh_caplen));
-
+    std::advance(_current_bpf_capture, BPF_WORDALIGN(bpf_header->bh_hdrlen + bpf_header->bh_caplen));
     return capture_data;
 }
 

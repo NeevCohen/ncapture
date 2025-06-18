@@ -30,5 +30,6 @@ namespace lib
         File _bpf_device;
         uint _read_buffer_size;
         Buffer _read_buffer;
+        Buffer::const_iterator _current_bpf_capture;
     };
 }
