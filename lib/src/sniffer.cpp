@@ -19,7 +19,7 @@ lib::File lib::Sniffer::get_available_bpf_device()
         try
         {
             const std::string bpf_dev_path = lib::string_format(BPF_DEVICE_FORMAT, i);
-            return lib::File{bpf_dev_path, O_RDWR};
+            return lib::File{bpf_dev_path, O_RDONLY};
         }
         catch (const std::runtime_error &)
         {
