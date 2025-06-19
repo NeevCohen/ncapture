@@ -13,7 +13,7 @@ int File::open(const std::string &path, int flags)
     int fd = ::open(path.c_str(), flags);
     if (fd < 0)
     {
-        throw std::runtime_error(string_format("Failed to open %s", path.c_str()));
+        throw std::runtime_error(string_format("Failed to open %s (errno %d)", path.c_str(), errno));
     }
 
     return fd;

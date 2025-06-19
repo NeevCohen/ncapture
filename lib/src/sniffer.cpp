@@ -9,13 +9,14 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <net/bpf.h>
+#include <sys/sysctl.h>
 
 File Sniffer::get_available_bpf_device()
 {
     static constexpr size_t MAX_BPF_DEVICES = 99;
     static constexpr char BPF_DEVICE_FORMAT[] = "/dev/bpf%u";
 
-    for (size_t i = 0; i < 99; ++i)
+    for (size_t i = 0; i < Sniffer::get_number_of_bpf_devices(); ++i)
     {
         try
         {
@@ -28,6 +29,20 @@ File Sniffer::get_available_bpf_device()
     }
 
     throw std::runtime_error("Failed to find available bpf device");
+}
+
+size_t Sniffer::get_number_of_bpf_devices()
+{
+    uint32_t max_bpfdevices = 0;
+    size_t len = sizeof(max_bpfdevices);
+    static constexpr char MAX_BPFDEVICES_SYSCTL_NAME[] = "debug.bpf_maxdevices";
+    static constexpr void *NO_NEW_VALUE = nullptr;
+    static constexpr size_t NEW_VALUE_SIZE = 0;
+    if (sysctlbyname(MAX_BPFDEVICES_SYSCTL_NAME, &max_bpfdevices, &len, NO_NEW_VALUE, NEW_VALUE_SIZE) != 0)
+    {
+        throw std::runtime_error(string_format("Failed to read number of bpf devices (errno %d)", errno));
+    }
+    return max_bpfdevices;
 }
 
 Sniffer::Sniffer(const std::string &interface_name) : _interface_name(interface_name),

@@ -9,10 +9,10 @@ class Sniffer
 {
 private:
     static File get_available_bpf_device();
+    static size_t get_number_of_bpf_devices();
 
 public:
     explicit Sniffer(const std::string &interface_name);
-    // Sniffer(Sniffer &&other) = delete;
 
 public:
     Buffer read_next_capture();
