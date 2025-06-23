@@ -4,6 +4,7 @@
 #include "noncopyable.hpp"
 
 #include <string>
+#include <optional>
 
 class Sniffer
 {
@@ -30,3 +31,5 @@ private:
     Buffer _read_buffer;
     Buffer::const_iterator _current_bpf_capture;
 };
+
+std::optional<Sniffer> create_sniffer(const std::string &interface_name) noexcept;

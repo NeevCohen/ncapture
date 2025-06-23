@@ -13,5 +13,6 @@ struct ncaptureApp: App {
         WindowGroup {
             ContentView()
         }
+        .defaultSize(width: 600, height: 400)
     }
 }

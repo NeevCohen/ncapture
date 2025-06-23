@@ -96,3 +96,15 @@ void Sniffer::init_bpf_device()
 
     _bpf_device.ioctl(BIOCPROMISC, nullptr);
 }
+
+std::optional<Sniffer> create_sniffer(const std::string &interface_name) noexcept
+{
+    try
+    {
+        return std::optional<Sniffer>(interface_name);
+    }
+    catch (...)
+    {
+        return std::nullopt;
+    }
+}

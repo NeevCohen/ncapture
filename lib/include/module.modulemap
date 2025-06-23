@@ -1,5 +1,7 @@
 module snifferLib {
     header "sniffer.hpp"
+    header "if_utils.hpp"
+    
     link "snifferLib"
 
     export *
