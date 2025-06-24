@@ -66,6 +66,7 @@ struct CaptureControl: View {
             }
             .disabled(shouldCapture)
             .padding(.horizontal, 35)
+            .frame(maxWidth: 600)
             
             Button(action: {
                 if (selectedNetworkInterface == nil) {
