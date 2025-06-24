@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedSwift
 
 struct CaptureData: View {
     @Binding var packets: [Packet]

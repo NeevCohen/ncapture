@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-import snifferLib
-
+import SharedSwift
 
 struct ContentView: View {
     @State private var shouldCapture = false

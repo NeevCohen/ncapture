@@ -1,12 +1,12 @@
 //
 //  NetworkUtils.swift
-//  ncapture
+//  SharedSwift
 //
-//  Created by Neev Cohen on 22/06/2025.
+//  Created by Neev Cohen on 24/06/2025.
 //
 
 import snifferLib
 
-func getNetworkInterfacesNames() -> [String] {
+public func getNetworkInterfacesNames() -> [String] {
     return Array(Set(get_interfaces_names().map { String($0) }))
 }

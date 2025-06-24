@@ -1,4 +1,4 @@
-add_library(snifferLib
+add_library(snifferLib STATIC
             src/sniffer.cpp
             src/file.cpp
             src/if_utils.cpp)

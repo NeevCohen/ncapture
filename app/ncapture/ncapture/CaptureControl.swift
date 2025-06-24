@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedSwift
 
 struct CaptureControl: View {
     let greenStartColor = 0x5C8374

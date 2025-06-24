@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C76160C82E036FE9000EEDBB /* libsnifferLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F612162E035BC9003BAB88 /* libsnifferLib.a */; };
+		C7E2C4EA2E0AEE7A00D625F5 /* SharedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C76160C82E036FE9000EEDBB /* libsnifferLib.a in Frameworks */,
+				C7E2C4EA2E0AEE7A00D625F5 /* SharedSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +80,7 @@
 			);
 			name = ncapture;
 			packageProductDependencies = (
+				C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */,
 			);
 			productName = ncapture;
 			productReference = C7F612062E035AD4003BAB88 /* ncapture.app */;
@@ -109,6 +110,9 @@
 			);
 			mainGroup = C7F611FD2E035AD4003BAB88;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C7C9CC802E0ADA3E000633B3 /* XCLocalSwiftPackageReference "../../SharedSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C7F612072E035AD4003BAB88 /* Products */;
 			projectDirPath = "";
@@ -273,7 +277,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../lib/include";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,7 +306,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../lib/include";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -342,6 +344,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C7C9CC802E0ADA3E000633B3 /* XCLocalSwiftPackageReference "../../SharedSwift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../SharedSwift;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C7F611FE2E035AD4003BAB88 /* Project object */;
 }
