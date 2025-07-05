@@ -21,9 +21,11 @@ let package = Package(
                 .interoperabilityMode(.Cxx)
             ]
         ),
-        .binaryTarget(
-            name: "snifferLib",
-            path: "../build/xcframeworks/snifferLib.xcframework"
-        )
     ]
 )
+
+#if DEBUG
+package.targets.append(.binaryTarget(name: "snifferLib", path: "../build/lib/Debug/xcframeworks/snifferLib.xcframework"))
+#else
+package.targets.append(.binaryTarget(name: "snifferLib", path: "../build/lib/Release/xcframeworks/snifferLib.xcframework"))
+#endif

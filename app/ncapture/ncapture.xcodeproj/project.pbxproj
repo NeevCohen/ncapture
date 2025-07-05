@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7E2C4EA2E0AEE7A00D625F5 /* SharedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */; };
+		C7E4C93D2E11C0FD006BB7EA /* SharedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C7E4C93C2E11C0FD006BB7EA /* SharedSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7E2C4EA2E0AEE7A00D625F5 /* SharedSwift in Frameworks */,
+				C7E4C93D2E11C0FD006BB7EA /* SharedSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +80,7 @@
 			);
 			name = ncapture;
 			packageProductDependencies = (
-				C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */,
+				C7E4C93C2E11C0FD006BB7EA /* SharedSwift */,
 			);
 			productName = ncapture;
 			productReference = C7F612062E035AD4003BAB88 /* ncapture.app */;
@@ -353,7 +353,7 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C7E2C4E92E0AEE7A00D625F5 /* SharedSwift */ = {
+		C7E4C93C2E11C0FD006BB7EA /* SharedSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedSwift;
 		};

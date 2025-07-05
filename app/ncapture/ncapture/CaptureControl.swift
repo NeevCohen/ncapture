@@ -15,6 +15,7 @@ struct CaptureControl: View {
     
     @Binding var shouldCapture: Bool
     @Binding var selectedNetworkInterface: String?
+    @Binding var packets: [Packet]
     
     var isStartButtonDisabled: Bool {
         get {
@@ -48,6 +49,7 @@ struct CaptureControl: View {
                 if (selectedNetworkInterface == nil) {
                     return
                 }
+                packets.removeAll()
                 shouldCapture = true
             }) {
                 Image(systemName: "play.fill")
@@ -91,6 +93,8 @@ struct CaptureControl: View {
 #Preview {
     @Previewable @State var shouldCapture = false
     @Previewable @State var selectedNetworkInterface: String? = nil
+    @Previewable @State var packets: [Packet] = []
     CaptureControl(shouldCapture: $shouldCapture,
-                   selectedNetworkInterface: $selectedNetworkInterface)
+                   selectedNetworkInterface: $selectedNetworkInterface,
+                   packets: $packets)
 }

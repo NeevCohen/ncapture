@@ -26,7 +26,8 @@ struct ContentView: View {
         VStack(alignment: .leading) {
             CaptureControl(
                 shouldCapture: $shouldCapture,
-                selectedNetworkInterface: $selectedNetworkInterface
+                selectedNetworkInterface: $selectedNetworkInterface,
+                packets: $packets
             )
             .frame(minHeight: 100)
             CaptureData(packets: $packets)
